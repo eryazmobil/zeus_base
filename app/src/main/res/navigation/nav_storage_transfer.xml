@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_storage_transfer"
+    app:startDestination="@id/transferStorageFragment">
+
+    <fragment
+        android:id="@+id/transferStorageFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferStorage.TransferStorageFragment"
+        android:label="TransferStorageFragment"
+        tools:layout="@layout/fragment_transfer_storage">
+        <action
+            android:id="@+id/action_transferStorageFragment_to_storageListDialogFragment"
+            app:destination="@id/storageListDialogFragment" />
+        <action
+            android:id="@+id/action_transferStorageFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+        <action
+            android:id="@+id/action_transferStorageFragment_to_shelfStorageDialog"
+            app:destination="@id/shelfStorageDialog" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+    <dialog
+        android:id="@+id/storageListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferStockCorrection.storageList.StorageListDialogFragment"
+        android:label="StorageListDialogFragment"
+        tools:layout="@layout/dialog_storage_list">
+
+        <argument
+            android:name="enterStorage"
+            app:argType="boolean"/>
+    </dialog>
+    <dialog
+        android:id="@+id/shelfStorageDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.dialog.ShelfStorageDialog"
+        android:label="ShelfStorageDialog" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </dialog>
+
+
+</navigation>

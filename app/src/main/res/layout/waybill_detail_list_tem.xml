@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dto"
+            type="eryaz.software.basewms.data.models.dto.WaybillListDetailDto" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_8sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/sogeoui"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="start"
+                android:text="@{dto.product.code}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/quantityTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="157.01.000000007"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productDef"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="@{dto.product.definition}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/controlTitle"
+                app:layout_constraintEnd_toStartOf="@+id/placementTitle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/controlTitle"
+                tools:text="FLIQA 1330 Maskeleme Kahverengi 1350 mm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/quantityTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sogeoui"
+                    android:text="ADET"
+                    android:gravity="center"
+                    android:minHeight="@dimen/_12sdp"
+                    android:minWidth="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    tools:ignore="SmallSp"
+                    app:layout_constraintEnd_toStartOf="@+id/quantityCountTxt"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/quantityCountTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{dto.quantityControlled}"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="123"
+                    android:minHeight="@dimen/_12sdp"
+                    android:minWidth="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/controlTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sogeoui"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="KONT"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:minHeight="@dimen/_12sdp"
+                    android:minWidth="@dimen/_12sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/controlValueTxt"
+                    app:layout_constraintTop_toTopOf="@+id/controlValueTxt"
+                    app:layout_constraintBottom_toBottomOf="@+id/controlValueTxt"
+                     />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/controlValueTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/colorDangerRed"
+                android:fontFamily="@font/sogeoui"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/statusValueTxt"
+                app:layout_constraintTop_toBottomOf="@+id/quantityCountTxt"
+                tools:text="EKSIK" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/placementTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:fontFamily="@font/sogeoui"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="YERLEŞ"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    app:layout_constraintTop_toTopOf="@+id/statusValueTxt"
+                    app:layout_constraintBottom_toBottomOf="@+id/statusValueTxt"
+                    app:layout_constraintEnd_toStartOf="@+id/statusValueTxt"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/statusValueTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sogeoui"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@color/colorPrimaryYellow"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/controlValueTxt"
+                    tools:text="URUN YOK"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productManufacturer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="start"
+                android:text="@{dto.product.manufacturer}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/placementTitle"
+                app:layout_constraintEnd_toStartOf="@+id/placementTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/placementTitle"
+                tools:text="ER1234567890" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

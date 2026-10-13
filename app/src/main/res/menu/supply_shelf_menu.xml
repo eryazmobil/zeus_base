@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/work_activity_detail"
+        android:orderInCategory="2"
+        android:visible="false"
+        android:title="@string/work_activity_detail"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/replenishmentShelf_product_quantity"
+        android:orderInCategory="2"
+        android:visible="false"
+        android:title="@string/menu_replenishmentShelf_product_quantity"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/finish_workActivity"
+        android:orderInCategory="2"
+        android:title="@string/menu_finish_workActivity"
+        app:showAsAction="never" />
+
+</menu>

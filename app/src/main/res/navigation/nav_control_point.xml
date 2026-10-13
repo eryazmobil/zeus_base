@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_control_point"
+    app:startDestination="@id/controlPointListFragment">
+
+    <fragment
+        android:id="@+id/controlPointListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.ControlPointListFragment"
+        android:label="ControlPointListFragment"
+        tools:layout="@layout/fragment_control_point_list">
+        <action
+            android:id="@+id/action_controlPointListFragment_to_orderHeaderListDialog"
+            app:destination="@id/orderHeaderListDialog">
+
+            <argument
+                android:name="orderHeaderList"
+                app:argType="eryaz.software.basewms.data.models.dto.OrderHeaderDto[]" />
+
+        </action>
+    </fragment>
+
+    <dialog
+        android:id="@+id/orderHeaderListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.orderHeaderDialog.OrderHeaderListDialog"
+        android:label="OrderHeaderListDialog"
+        tools:layout="@layout/order_header_list">
+
+        <argument
+            android:name="orderHeaderList"
+            app:argType="eryaz.software.basewms.data.models.dto.OrderHeaderDto[]" />
+        <action
+            android:id="@+id/action_orderHeaderListDialog_to_controlPointDetailFragment"
+            app:destination="@id/controlPointDetailFragment">
+
+            <argument android:name="workActivityCode" />
+            <argument
+                android:name="orderHeaderId"
+                app:argType="integer" />
+        </action>
+
+    </dialog>
+
+    <fragment
+        android:id="@+id/controlPointDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.orderHeaderDialog.controlPointDetail.ControlPointDetailFragment"
+        android:label="controlPointDetailFragment"
+        tools:layout="@layout/fragment_control_point_detail">
+
+        <argument android:name="workActivityCode" />
+        <argument
+            android:name="orderHeaderId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_controlPointDetailFragment_to_packageListDialog"
+            app:destination="@id/packageListDialog" />
+        <action
+            android:id="@+id/action_controlPointDetailFragment_to_updatePackageControlDialog"
+            app:destination="@id/updatePackageControlDialog" />
+        <action
+            android:id="@+id/action_controlPointDetailFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/packageListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.orderHeaderDialog.controlPointDetail.addPackage.AddPackageControlDialog"
+        android:label="PackageListDialog"
+        tools:layout="@layout/dialog_add_package_control">
+
+        <argument
+            android:name="packgeList"
+            app:argType="eryaz.software.basewms.data.models.dto.PackageDto[]"/>
+        <argument
+            android:name="orderHeaderId"
+            app:argType="integer"/>
+
+    </dialog>
+    <dialog
+        android:id="@+id/updatePackageControlDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.orderHeaderDialog.controlPointDetail.updatePackage.UpdatePackageControlDialog"
+        android:label="UpdatePackageControlDialog"
+        tools:layout="@layout/dialog_update_package_control">
+        <argument
+            android:name="packageDto"
+            app:argType="eryaz.software.basewms.data.models.dto.PackageDto"/>
+        <argument
+            android:name="packageId"
+            app:argType="integer"/>
+
+    </dialog>
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment" />
+
+</navigation>

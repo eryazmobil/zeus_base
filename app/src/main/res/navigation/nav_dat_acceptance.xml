@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/acceptance_dat_nav"
+    app:startDestination="@id/datAcceptanceListFragment">
+
+    <fragment
+        android:id="@+id/datAcceptanceListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.dat.acceptance.DatAcceptanceListFragment"
+        android:label="DatAcceptanceListFragment"
+        tools:layout="@layout/fragment_dat_acceptance_list">
+        <action
+            android:id="@+id/action_datAcceptanceListFragment_to_datAcceptanceProcessFragment"
+            app:destination="@id/datAcceptanceProcessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/datAcceptanceProcessFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.dat.acceptance.acceptanceProcess.DatAcceptanceProcessFragment"
+        android:label="DatAcceptanceProcessFragment"
+        tools:layout="@layout/fragment_dat_acceptance_process_detail">
+        <action
+            android:id="@+id/action_datAcceptanceProcessFragment_to_createBarcodeDialog"
+            app:destination="@id/createBarcodeDialog2" />
+        <action
+            android:id="@+id/action_datAcceptanceProcessFragment_to_acceptanceTransferDetailFragment"
+            app:destination="@id/acceptanceTransferDetailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/createBarcodeDialog2"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.acceptance.acceptanceProcess.createBarcode.CreateBarcodeDialog"
+        android:label="CreateBarcodeDialog"
+        tools:layout="@layout/create_barcode_dialog" >
+        <argument
+            android:name="barcode"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_createBarcodeDialog3_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment2" />
+    </dialog>
+    <dialog
+        android:id="@+id/acceptanceTransferDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.dat.acceptance.acceptanceProcess.transferDetail.AcceptanceTransferDetailFragment"
+        android:label="AcceptanceTransferDetailFragment" >
+        <argument
+            android:name="datType"
+            app:argType="eryaz.software.basewms.util.enums.DatType" />
+    </dialog>
+    <dialog
+        android:id="@+id/productListDialogFragment2"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment" />
+</navigation>

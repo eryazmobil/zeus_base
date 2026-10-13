@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_variety_shelf"
+    app:startDestination="@id/varietyShelfCreateFragment">
+
+    <fragment
+        android:id="@+id/varietyShelfCreateFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.createVerifyShelf.VarietyShelfCreateFragment"
+        android:label="VarietyShelfCreateFragment"
+        tools:layout="@layout/fragment_variety_shelf_create">
+        <action
+            android:id="@+id/action_varietyShelfCreateFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/dialog_product_list" />
+</navigation>

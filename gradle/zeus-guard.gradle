@@ -1,0 +1,95 @@
+/*
+ * ============================================================================
+ *  ZEUS GUARD  -  uygulama projelerinde (base_zeus vb.) kural kontrolü
+ * ============================================================================
+ *  Uygulamanın app/build.gradle dosyasına eklenir:
+ *
+ *      apply from: "<ZeusBaseData yolu>/zeus-guard.gradle"
+ *
+ *  Her build'den önce (preBuild) uygulamanın kodunu tarar. Aşağıdakilerden biri
+ *  bulunursa BUILD HATA VERİR ve APK çıkmaz:
+ *    - Koin kullanımı           (startKoin, module {}, org.koin...)
+ *    - Retrofit / OkHttp        (API servisleri sadece ZeusBaseData'da yazılır)
+ *    - Sunucu / swagger adresi  (http://, https://, swagger)
+ *    - build.gradle'da Koin / Retrofit / OkHttp bağımlılığı veya URL tanımı
+ * ============================================================================
+ */
+
+def zeusSrcDir = project.file("src")
+// ZeusBaseData'nın kendi içinde (örnek app) çalışıyorsak kök dosyalar taranmaz:
+// orada Koin/Retrofit tanımları kütüphane için zaten olmak zorunda.
+def zeusIsLibraryRoot = project.rootProject.file("zeus-guard.gradle").exists() &&
+                        project.rootProject.file("zeus-data").isDirectory()
+
+def zeusBuildFiles = [project.file("build.gradle"), project.file("build.gradle.kts")]
+if (!zeusIsLibraryRoot) {
+    zeusBuildFiles += [project.rootProject.file("build.gradle"), project.rootProject.file("build.gradle.kts"),
+                       project.rootProject.file("gradle.properties"),
+                       project.rootProject.file("gradle/libs.versions.toml")]
+}
+zeusBuildFiles = zeusBuildFiles.findAll { it.exists() }
+
+def zeusGuardTask = tasks.register("zeusGuard") {
+    group = "verification"
+    description = "Uygulamada Koin / Retrofit / sunucu adresi tanımlanmasını engeller."
+    inputs.files(project.fileTree(zeusSrcDir) { include "**/*.kt", "**/*.java" })
+    inputs.files(zeusBuildFiles)
+    outputs.upToDateWhen { false }
+
+    doLast {
+        // Kod kuralları: [regex, açıklama]
+        def codeRules = [
+            [/\borg\.koin\./,                        "Koin kullanılamaz. ViewModel için zeusViewModel<...>() kullanın."],
+            [/\bstartKoin\b|\bloadKoinModules\b/,    "Koin başlatılamaz. Koin'i sadece ZeusApplication başlatır."],
+            [/\bmodule\s*\{/,                        "Koin modülü yazılamaz. API/repo tanımları ZeusBaseData'da yapılır."],
+            [/\bKoinComponent\b|\bby\s+inject\b/,    "Koin inject kullanılamaz."],
+            [/\bretrofit2\./,                        "Retrofit kullanılamaz. API servisleri ZeusBaseData'ya yazılır."],
+            [/\bokhttp3\./,                          "OkHttp kullanılamaz. Ağ katmanı ZeusBaseData'dadır."],
+            [/@(GET|POST|PUT|DELETE|PATCH|HTTP)\s*\(/, "API tanımı (@GET/@POST...) uygulamada yazılamaz. ZeusBaseData'ya yazın."],
+            [/(?i)swagger/,                          "Swagger/sunucu bilgisi uygulamada olamaz. ZeusBaseData'ya yazın."],
+            [/(?i)https?:\/\/(?!schemas\.android\.com|play\.google\.com|market:)/, "Sunucu adresi uygulamada tanımlanamaz. Adresler ZeusBaseData'dadır."],
+        ]
+        // Gradle kuralları
+        def buildRules = [
+            [/io\.insert-koin/,        "Koin bağımlılığı eklenemez."],
+            [/com\.squareup\.retrofit2/, "Retrofit bağımlılığı eklenemez."],
+            [/com\.squareup\.okhttp3/,   "OkHttp bağımlılığı eklenemez."],
+            [/(?i)buildConfigField[^\n]*(url|http|swagger)/, "BuildConfig'e sunucu adresi eklenemez."],
+            [/(?i)^\s*[A-Z_]*URL\s*=/, "gradle.properties'e sunucu adresi eklenemez."],
+        ]
+
+        def violations = []
+        def scan = { File f, List rules ->
+            def lines = f.readLines("UTF-8")
+            lines.eachWithIndex { String line, int i ->
+                def trimmed = line.trim()
+                if (trimmed.startsWith("//") || trimmed.startsWith("*") || trimmed.startsWith("/*") || trimmed.startsWith("#")) return
+                rules.each { rule ->
+                    if (line =~ rule[0]) {
+                        violations << "  ${f.path}:${i + 1}\n      -> ${rule[1]}\n      ${trimmed}"
+                    }
+                }
+            }
+        }
+
+        if (zeusSrcDir.exists()) {
+            zeusSrcDir.eachFileRecurse { File f ->
+                if (f.isFile() && (f.name.endsWith(".kt") || f.name.endsWith(".java"))) scan(f, codeRules)
+            }
+        }
+        zeusBuildFiles.each { scan(it, buildRules) }
+
+        if (!violations.isEmpty()) {
+            throw new GradleException(
+                "\n\n================ ZEUS KURAL İHLALİ (${violations.size()}) ================\n" +
+                "Bu projede Koin, Retrofit, OkHttp ve sunucu adresi TANIMLANAMAZ.\n" +
+                "Yeni API'ler ZeusBaseData projesine eklenir (bkz. zeus-data/.../di/ZeusDataModules.kt).\n\n" +
+                violations.join("\n\n") +
+                "\n=====================================================================\n"
+            )
+        }
+        println("ZeusGuard: kurallar OK")
+    }
+}
+
+tasks.matching { it.name == "preBuild" }.configureEach { dependsOn(zeusGuardTask) }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.settings.SettingsViewModel" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:onRetryClick="@{() -> viewModel.fetchData()}"
+        app:sv_ignore_referenced_ids="toolbar"
+        app:sv_viewState="@{viewModel.uiState}">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="Eryaz Bilgi Teknolojileri"
+            app:title="Hoş Geldiniz" />
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutDescription="@xml/motion_settings_scene2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/userImg"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:shadowColor="@color/black"
+                android:src="@drawable/ic_avatar_svgrepo_com"
+                android:translationZ="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Zeus.CornerSize50Percent"
+                app:strokeWidth="1dp" />
+
+            <eryaz.software.basewms.util.widgets.SettingsItem
+                android:id="@+id/userInfoItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userImg"
+                app:title="@string/logged_user"
+                app:value="@{viewModel.currentUserDto.fullName}" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userInfoItem">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/companyItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        tools:value="SIRKET"
+                        android:value="@{viewModel.companyName}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:title="@string/company_" />
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/warehouseItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        android:value="@{viewModel.warehouseName}"
+                        app:layout_constraintTop_toBottomOf="@id/companyItem"
+                        app:title="@string/warehouse_" />
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/appVersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/warehouseItem"
+                        app:title="@string/app_version_info"
+                        app:value="@string/versionName" />
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/appVersionUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:clickable="@{viewModel.updateClickable}"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/appVersion"
+                        app:title="@string/update"
+                        app:value="@{viewModel.isUpToDate()}" />
+
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/appLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/appVersionUpdate"
+                        app:title="@string/app_language_info"
+                        app:value="@{viewModel.currentLanguage}"
+                        />
+
+                    <eryaz.software.basewms.util.widgets.SettingsItem
+                        android:id="@+id/changePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toBottomOf="@+id/appLanguage"
+                        app:title="@string/change_password_"
+                        app:value="******" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+    </eryaz.software.basewms.util.widgets.StateView>
+</layout>

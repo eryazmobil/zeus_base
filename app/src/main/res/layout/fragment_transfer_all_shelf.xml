@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.movement.transferAllShelf.TransferAllShelfVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/menu_sub_movement_shelfAll"
+            app:title="@string/movement" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bgColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/shelfAddressOut"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/shelf_code_out"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/exitShelfAddressEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.exitShelfValue}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/shelfAddressIn"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/shelf_code_in"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shelfAddressOut">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/enterShelfAddressEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.enterShelfValue}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/transferBtn"
+                        style="@style/Widget.NewZeusDemo.Button_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="@string/transfer"
+                        android:textSize="20sp"
+                        app:layout_constraintVertical_bias="0"
+                        app:fontFamily="@font/sogeoui"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shelfAddressIn"
+                        app:layout_goneMarginTop="@dimen/_10sdp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

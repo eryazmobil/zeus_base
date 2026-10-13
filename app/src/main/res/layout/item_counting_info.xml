@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dto"
+            type="eryaz.software.basewms.data.models.dto.StockTackingProcessDto" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productCodeTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/sogeoui"
+            android:maxLines="1"
+            android:paddingVertical="@dimen/_13sdp"
+            android:paddingStart="@dimen/_13sdp"
+            android:paddingEnd="@dimen/_6sdp"
+            android:singleLine="true"
+            android:text="@{dto.productDto.code}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toStartOf="@id/quantityValueEdt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/lorem" />
+
+        <EditText
+            android:id="@+id/quantityValueEdt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sogeoui"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_13sdp"
+            android:paddingStart="@dimen/_6sdp"
+            android:paddingEnd="@dimen/_13sdp"
+            android:text="@{dto.editedShelfCurrentQuantity.toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/productCodeTxt"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="23" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/makeQuantityBtn"
+            style="@style/Widget.NewZeusDemo.CountingButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/edit"
+            android:textSize="20sp"
+            app:fontFamily="@font/sogeoui"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productCodeTxt" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteBtn"
+            style="@style/Widget.NewZeusDemo.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/delete"
+            android:textSize="20sp"
+            app:fontFamily="@font/sogeoui"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/makeQuantityBtn"
+            app:layout_constraintTop_toBottomOf="@id/quantityValueEdt" />
+
+
+        <View
+            android:id="@+id/underline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_f6"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

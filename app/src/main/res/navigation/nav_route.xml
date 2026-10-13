@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_route"
+    app:startDestination="@id/routeListFragment">
+
+    <fragment
+        android:id="@+id/routeListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.routeList.RouteListFragment"
+        android:label="RouteListFragment"
+        tools:layout="@layout/item_route_list">
+        <action
+            android:id="@+id/action_routeListFragment_to_chooseVehicleFragment"
+            app:destination="@id/chooseVehicleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseVehicleFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.routeList.chooseStep.ChooseVehicleFragment"
+        android:label="ChooseVehicleFragment"
+        tools:layout="@layout/fragment_choosen_vehicle">
+
+        <argument
+            android:name="routeId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_chooseVehicleFragment_to_vehicleDownFragment"
+            app:destination="@id/vehicleDownFragment" />
+        <action
+            android:id="@+id/action_chooseVehicleFragment_to_vehicleUpFragment"
+            app:destination="@id/vehicleUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDownFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.routeList.chooseStep.vehicleDown.VehicleDownFragment"
+        android:label="VehicleDownFragment"
+        tools:layout="@layout/fragment_vehicle_down">
+        <argument
+            android:name="vehicleID"
+            app:argType="integer" />
+        <argument
+            android:name="routeID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_vehicleDownFragment_to_orderDetailViewPagerFragment"
+            app:destination="@id/orderDetailViewPagerFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleUpFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.routeList.chooseStep.vehicleUp.VehicleUpFragment"
+        tools:layout="@layout/fragment_vehicle_up"
+        android:label="VehicleUpFragment">
+        <argument
+            android:name="vehicleID"
+            app:argType="integer" />
+
+        <argument
+            android:name="routeID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_vehicleUpFragment_to_orderDetailViewPagerFragment"
+            app:destination="@id/orderDetailViewPagerFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/orderDetailViewPagerFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.routeList.chooseStep.vehicleDown.orderDetailViewPager.OrderDetailViewPagerFragment"
+        android:label="OrderDetailViewPagerFragment"
+        tools:layout="@layout/fragment_order_detail_viewPager">
+
+        <argument
+            android:name="shippingRouteId"
+            app:argType="integer" />
+
+        <argument
+            android:name="orderHeaderId"
+            app:argType="integer" />
+    </dialog>
+
+</navigation>

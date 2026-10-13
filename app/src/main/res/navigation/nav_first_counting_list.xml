@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_warehouse_counting_list"
+    app:startDestination="@id/warehouseCountingListFragment">
+
+    <fragment
+        android:id="@+id/warehouseCountingListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.firstCounting.FirstCountingListFragment"
+        android:label="WarehouseCountingListFragment"
+        tools:layout="@layout/item_counting_work_activity_list">
+        <action
+            android:id="@+id/action_warehouseCountingListFragment_to_firstCountingDetailFragment"
+            app:destination="@id/firstCountingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstCountingDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.firstCounting.firstCountingDetail.FirstCountingDetailFragment"
+        android:label="FirstCountingDetailFragment"
+        tools:layout="@layout/fragment_first_counting_detail">
+
+        <argument
+            android:name="stockTakingHeaderId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_firstCountingDetailFragment_to_createBarcodeDialog"
+            app:destination="@id/createBarcodeDialog" />
+        <action
+            android:id="@+id/action_firstCountingDetailFragment_to_infoFirstCountingFragment"
+            app:destination="@id/infoFirstCountingFragment" />
+        <action
+            android:id="@+id/action_firstCountingDetailFragment_to_productListDialogFragment3"
+            app:destination="@id/productListDialogFragment3" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/createBarcodeDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.firstCounting.firstCountingDetail.dialog.CreateBarcodeDialog"
+        android:label="CreateBarcodeDialog"
+        tools:layout="@layout/create_barcode_dialog" />
+
+    <fragment
+        android:id="@+id/infoFirstCountingFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.firstCounting.firstCountingDetail.countingInfo.InfoFirstCountingFragment"
+        android:label="InfoFirstCountingFragment"
+        tools:layout="@layout/item_counting_info" >
+
+        <argument
+            android:name="stHeaderId"
+            app:argType="integer"/>
+
+        <argument
+            android:name="selectedShelfId"
+            app:argType="integer"/>
+    </fragment>
+    <dialog
+        android:id="@+id/productListDialogFragment3"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment" />
+
+</navigation>

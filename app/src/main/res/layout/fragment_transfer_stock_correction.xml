@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="eryaz.software.basewms.data.enums.UiState" />
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.movement.transferStockCorrection.TransferStockCorrectionVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/menu_sub_movement_stock_correction"
+            app:title="@string/movement" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bgColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <eryaz.software.basewms.util.widgets.TextInputLayout
+                    android:id="@+id/search_product_barcode_acceptance"
+                    style="@style/Widget.Zeus.SearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:clickable="true"
+                    android:elevation="10dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/product_barcode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchProductEdt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={viewModel.searchProduct}"
+                        android:textColorHint="@color/logoGray"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/sogeoui" />
+                </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/productDetailFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isVisibleElseGone="@{viewModel.showProductDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_product_barcode_acceptance">
+
+                    <eryaz.software.basewms.util.widgets.DetailRowTextView
+                        android:id="@+id/productDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="8dp"
+                        app:changeColor="@color/textColor"
+                        app:clientName="@{viewModel.productDetail.product.manufacturerCode}"
+                        app:creationTime="@{viewModel.productDetail.product.code}"
+                        app:detailTitle="@string/product_details"
+                        app:documentNo="@{viewModel.productDetail.product.definition}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/shelfAddressOut"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/enter_shelf_address"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productDescription">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/shelfAddressEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.enterShelfValue}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/deleteProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginBottom="5dp"
+                        android:drawableStart="@drawable/ic_down"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:minHeight="32dp"
+                        android:text="@{viewModel.stockTypeName}"
+                        android:hint="@string/delete_product"
+                        android:textColor="@color/colorEditTextColor"
+                        android:textSize="20sp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/shelfAddressOut" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/choiceStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginBottom="5dp"
+                        android:drawableStart="@drawable/ic_down"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:minHeight="32dp"
+                        android:text="@{viewModel.storageName}"
+                        android:hint="@string/select_in_warehouse"
+                        android:textColor="@color/colorEditTextColor"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/deleteProduct" />
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/amountLyt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/qty"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/choiceStorage">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtQuantity"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:text="@={viewModel.enteredQuantity}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkBoxToERP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@={viewModel.isCheckBoxChecked}"
+                        app:layout_constraintTop_toBottomOf="@+id/amountLyt"
+                        app:layout_constraintEnd_toStartOf="@+id/addToErpTxt" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/addToErpTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:minHeight="32dp"
+                        android:hint="@string/process_to_erp"
+                        android:textColor="@color/colorEditTextColor"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/amountLyt"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/edtPriceLyt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/cost"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addToErpTxt">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPrice"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:text="@={viewModel.enteredPrices}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/edtNoteLyt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/notes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtPriceLyt">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNote"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.enteredNotes}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/transferBtn"
+                        style="@style/Widget.NewZeusDemo.Button_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        app:enabled="@{viewModel.uiState != UiState.LOADING}"
+                        android:text="@string/transfer"
+                        android:textSize="20sp"
+                        app:fontFamily="@font/sogeoui"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtNoteLyt"
+                        app:layout_goneMarginTop="@dimen/_10sdp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

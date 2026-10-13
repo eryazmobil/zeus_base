@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.movement.transferStorage.TransferStorageVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/menu_sub_movement_warehouse"
+            app:title="@string/movement" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bgColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <eryaz.software.basewms.util.widgets.TextInputLayout
+                    android:id="@+id/search_product_barcode"
+                    style="@style/Widget.Zeus.SearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:elevation="10dp"
+                    android:hint="@string/product_barcode"
+                    app:endIconDrawable="@drawable/ic_blue_search"
+                    app:endIconTint="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchEdt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={viewModel.searchProduct}"
+                        android:textColorHint="@color/logoGray"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/sogeoui" />
+                </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/productDetailFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isVisibleElseGone="@{viewModel.showProductDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_product_barcode">
+
+                    <eryaz.software.basewms.util.widgets.DetailRowTextView
+                        android:id="@+id/productDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="8dp"
+                        app:changeColor="@color/textColor"
+                        app:clientName="@{viewModel.productDetail.manufacturerCode}"
+                        app:creationTime="@{viewModel.productDetail.code}"
+                        app:detailTitle="@string/product_details"
+                        app:documentNo="@{viewModel.productDetail.definition}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/choiceExitWarehouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginBottom="5dp"
+                        android:drawableStart="@drawable/ic_down"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:minHeight="32dp"
+                        android:text="@{viewModel.exitStorageName}"
+                        android:hint="@string/select_out_warehouse"
+                        android:textColor="@color/colorEditTextColor"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/shelfAddressOut"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        app:endIconDrawable="@drawable/info_around"
+                        app:endIconTint="@null"
+                        android:hint="@string/shelf_code_out"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/choiceExitWarehouse">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/exitShelfAddressEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.exitShelfValue}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/amountLyt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/qty"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shelfAddressOut">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtQuantity"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:text="@={viewModel.enteredQuantity}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/choiceEnterWarehouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginBottom="5dp"
+                        android:drawableStart="@drawable/ic_down"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:minHeight="32dp"
+                        android:text="@{viewModel.enterStorageName}"
+                        android:hint="@string/select_in_warehouse"
+                        android:textColor="@color/colorEditTextColor"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/amountLyt" />
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/shelfAddressIn"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/shelf_code_in"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/choiceEnterWarehouse">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/enterShelfAddressEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.enterShelfValue}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/receivedBy"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="10dp"
+                        android:hint="@string/receiver_person"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shelfAddressIn">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/receivedByEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.receivedBy}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/transferBtn"
+                        style="@style/Widget.NewZeusDemo.Button_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="@string/transfer"
+                        android:textSize="20sp"
+                        app:fontFamily="@font/sogeoui"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/receivedBy"
+                        app:layout_goneMarginTop="@dimen/_10sdp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

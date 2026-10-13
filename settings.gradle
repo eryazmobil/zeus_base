@@ -1,0 +1,36 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+
+        // ZeusBaseData kütüphanesi (API, repo, Koin, base sınıflar) GitHub Packages'tan gelir.
+        // Erişim için ~/.gradle/gradle.properties dosyasına (proje içine DEĞİL):
+        //   gpr.user=GITHUB_KULLANICI_ADI
+        //   gpr.key=ghp_...   (read:packages yetkili token)
+        maven {
+            url = uri("https://maven.pkg.github.com/eryazzmobil/zeusdatabase")
+            credentials {
+                username = providers.gradleProperty("gpr.user").getOrElse(System.getenv("GITHUB_ACTOR") ?: "")
+                password = providers.gradleProperty("gpr.key").getOrElse(System.getenv("GITHUB_TOKEN") ?: "")
+            }
+            content { includeGroup("eryaz.software.zeus") }
+        }
+    }
+}
+
+rootProject.name = "zeus_base"
+include ':app'

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.settings.changeLanguage.LanguageVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        tools:context=".ui.main.settings.language.adapter.LanguageFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="3"
+            tools:itemCount="3"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/item_language" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/closeBtn"
+            style="@style/Widget.Eryaz.Button.IconButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginVertical="32dp"
+            android:insetLeft="7dp"
+            android:insetTop="7dp"
+            android:insetRight="7dp"
+            android:insetBottom="7dp"
+            app:backgroundTint="@color/gray_f6"
+            app:icon="@drawable/baseline_close_24"
+            app:iconTint="@color/gray_a1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

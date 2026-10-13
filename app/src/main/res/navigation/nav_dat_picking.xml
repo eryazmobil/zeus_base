@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_dat_picking"
+    app:startDestination="@id/datPickingListFragment">
+
+    <fragment
+        android:id="@+id/datPickingListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datPicking.DatPickingListFragment"
+        android:label="DatPickingListFragment"
+        tools:layout="@layout/fragment_dat_picking_list">
+        <action
+            android:id="@+id/action_datPickingListFragment_to_datPickingDetailFragment"
+            app:destination="@id/datPickingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/datPickingDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datPicking.datPickingDetail.DatPickingDetailFragment"
+        android:label="DatPickingDetailFragment"
+        tools:layout="@layout/fragment_dat_picking_detail">
+
+        <action
+            android:id="@+id/action_datPickingDetailFragment_to_shelfListDialog"
+            app:destination="@id/shelfListDialog" />
+        <action
+            android:id="@+id/action_datPickingDetailFragment_to_transferDetailListDialog"
+            app:destination="@id/transferDetailListDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/shelfListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.orderPicking.orderPickingDetail.dialog.ShelfListDialog"
+        android:label="ShelfListDialog"
+        tools:layout="@layout/order_shelf_list_dialog">
+
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+
+    </dialog>
+    <dialog
+        android:id="@+id/transferDetailListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datPicking.datPickingDetail.dialog.TransferDetailListDialog"
+        tools:layout="@layout/transfer_detail_dialog_list"
+        android:label="TransferDetailListDialog" >
+        <argument android:name="datType"
+            app:argType="eryaz.software.basewms.util.enums.DatType" />
+    </dialog>
+
+</navigation>

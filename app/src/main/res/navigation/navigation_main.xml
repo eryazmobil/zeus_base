@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/loginFragment">
+
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+    <include app:graph="@navigation/nav_storage_transfer" />
+    <include app:graph="@navigation/nav_dat_acceptance" />
+    <include app:graph="@navigation/nav_dat_placement" />
+    <include app:graph="@navigation/nav_acceptance" />
+    <include app:graph="@navigation/nav_placement" />
+    <include app:graph="@navigation/nav_settings" />
+    <include app:graph="@navigation/nav_stock_correction" />
+    <include app:graph="@navigation/nav_recording_barcode" />
+    <include app:graph="@navigation/nav_variety_shelf" />
+    <include app:graph="@navigation/nav_query_product" />
+    <include app:graph="@navigation/nav_first_counting_list" />
+    <include app:graph="@navigation/nav_fast_counting" />
+    <include app:graph="@navigation/nav_order_picking" />
+    <include app:graph="@navigation/nav_control_point" />
+    <include app:graph="@navigation/nav_dat_picking" />
+    <include app:graph="@navigation/nav_route" />
+    <include app:graph="@navigation/nav_dat_control" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="eryaz.software.basewms.ui.auth.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.DashboardFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_mainFragment_to_dashboardDetailFragment"
+            app:destination="@id/dashboardDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_nav_settings"
+            app:destination="@id/nav_settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.dashboardDetail.DashboardDetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_dashboard_detail_list">
+        <argument android:name="title" />
+        <argument
+            android:name="permissionType"
+            app:argType="eryaz.software.basewms.data.enums.DashboardPermissionType" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_crossDockListFragment"
+            app:destination="@id/crossDockListFragment" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_acceptance_dat_nav"
+            app:destination="@id/acceptance_dat_nav" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_placement_dat_nav"
+            app:destination="@id/placement_dat_nav" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_storage_transfer"
+            app:destination="@id/nav_storage_transfer" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_acceptance"
+            app:destination="@id/nav_acceptance" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_placement"
+            app:destination="@id/nav_placement" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_transferAddressFragment"
+            app:destination="@id/transferAddressFragment" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_transferAllShelfFragment"
+            app:destination="@id/transferAllShelfFragment" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_stock_correction"
+            app:destination="@id/nav_stock_correction" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_recording_barcode"
+            app:destination="@id/nav_recording_barcode" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_variety_shelf"
+            app:destination="@id/nav_variety_shelf" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_query_product"
+            app:destination="@id/nav_query_product" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_queryShelfFragment"
+            app:destination="@id/queryShelfFragment" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_warehouse_counting_list"
+            app:destination="@id/nav_warehouse_counting_list" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_fast_counting"
+            app:destination="@id/nav_fast_counting" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_order_picking_graph"
+            app:destination="@id/nav_order_picking_graph" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_control_point"
+            app:destination="@id/nav_control_point" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_dat_picking"
+            app:destination="@id/nav_dat_picking" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_route"
+            app:destination="@id/nav_route" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_dat_control"
+            app:destination="@id/nav_dat_control" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_partialCountingFragment"
+            app:destination="@id/partialCountingFragment" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_supply"
+            app:destination="@id/nav_supply" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_sizing_recording_barcode_nav"
+            app:destination="@id/sizing_recording_barcode_nav" />
+        <action
+            android:id="@+id/action_dashboardDetailFragment_to_nav_dat_cancel"
+            app:destination="@id/nav_dat_cancel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crossDockListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.crossdockList.CrossDockListFragment"
+        android:label="CrossDockListFragment"
+        tools:layout="@layout/fragment_cross_dock_list" />
+    <fragment
+        android:id="@+id/transferAddressFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferShelf.TransferShelfFragment"
+        android:label="TransferAddressFragment"
+        tools:layout="@layout/fragment_transfer_address" >
+        <action
+            android:id="@+id/action_transferAddressFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+        <action
+            android:id="@+id/action_transferAddressFragment_to_shelfStorageDialog3"
+            app:destination="@id/shelfStorageDialog3" />
+    </fragment>
+    <fragment
+        android:id="@+id/transferAllShelfFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferAllShelf.TransferAllShelfFragment"
+        android:label="TransferAllShelfFragment"
+        tools:layout="@layout/fragment_transfer_all_shelf" />
+    <fragment
+        android:id="@+id/queryShelfFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.query.queryShelf.QueryShelfFragment"
+        android:label="QueryShelfFragment"
+        tools:layout="@layout/fragment_query_shelf" />
+    <fragment
+        android:id="@+id/partialCountingFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.partialcounting.PartialCountingFragment"
+        android:label="PartialCountingFragment" />
+    <include app:graph="@navigation/nav_supply" />
+    <include app:graph="@navigation/sizing_recording_barcode_nav" />
+    <include app:graph="@navigation/nav_dat_cancel" />
+    <dialog
+        android:id="@+id/shelfStorageDialog3"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.dialog.ShelfStorageDialog"
+        android:label="ShelfStorageDialog" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </dialog>
+
+</navigation>

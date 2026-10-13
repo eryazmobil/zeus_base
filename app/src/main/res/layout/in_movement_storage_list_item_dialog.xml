@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="dto"
+            type="eryaz.software.basewms.data.models.dto.StorageDto" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/dashboard_detail_bg">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="@dimen/padding_10"
+            android:gravity="center|center_vertical"
+            android:text="@{dto.definition}"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:fontFamily="@font/sogeoui"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ANA DEPO" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

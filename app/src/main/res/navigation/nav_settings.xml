@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_settings"
+    app:startDestination="@id/settingsFragment">
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.settings.SettingsFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingFragment_to_passwordDialog"
+            app:destination="@id/passwordDialog" />
+        <action
+            android:id="@+id/action_settingsFragment_to_companyListDialog"
+            app:destination="@id/companyListDialog">
+
+            <argument
+                android:name="companyList"
+                app:argType="eryaz.software.basewms.data.models.dto.CompanyDto[]" />
+
+        </action>
+        <action
+            android:id="@+id/action_settingsFragment_to_warehouseListDialog"
+            app:destination="@id/warehouseListDialog" >
+
+            <argument
+                android:name="warehouseList"
+                app:argType="eryaz.software.basewms.data.models.dto.WarehouseDto[]" />
+
+        </action>
+        <action
+            android:id="@+id/action_settingsFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/passwordDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.settings.changePassword.ChangePasswordDialogFragment"
+        android:label="PasswordDialog"
+        tools:layout="@layout/fragment_chage_password" />
+    <dialog
+        android:id="@+id/companyListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.settings.companies.CompanyListDialog"
+        android:label="@string/empty_label"
+        tools:layout="@layout/dialog_company_list">
+
+        <argument
+            android:name="companyList"
+            app:argType="eryaz.software.basewms.data.models.dto.CompanyDto[]" />
+
+    </dialog>
+    <dialog
+        android:id="@+id/warehouseListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.settings.warehouses.WarehouseListDialog"
+        android:label="@string/empty_label"
+        tools:layout="@layout/dialog_warehouse_list" >
+
+        <argument
+            android:name="warehouseList"
+            app:argType="eryaz.software.basewms.data.models.dto.WarehouseDto[]" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/languageFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.settings.changeLanguage.LanguageFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_language"
+        />
+</navigation>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dto"
+            type="eryaz.software.basewms.data.models.dto.TransferRequestDetailDto" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_8sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:fontFamily="@font/sogeoui"
+                android:text="@{dto.product.code}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/controlTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productDef"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:gravity="start"
+                android:maxLines="2"
+                android:minHeight="32dp"
+                android:layout_marginVertical="@dimen/_6sdp"
+                android:text="@{dto.product.definition}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/controlTitle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productCode"
+                tools:text="@tools:sample/lorem/random" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/productManufacturer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:text="@{dto.product.manufacturer}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginVertical="@dimen/_6sdp"
+                app:layout_constraintEnd_toStartOf="@id/controlTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productDef"
+                tools:text="@tools:sample/lorem" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/controlStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:fontFamily="@font/sogeoui"
+                android:textColor="@color/colorEditTextColor"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/productCode"
+                app:layout_constraintStart_toStartOf="@+id/controlTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Kontrol: " />
+
+            <ImageView
+                android:id="@+id/statusImage"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:contentDescription="controlStatusImage"
+                android:src="@drawable/ic_danger"
+                app:layout_constraintBottom_toBottomOf="@+id/controlStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/controlStatus"
+                app:layout_constraintTop_toTopOf="@+id/controlStatus">
+
+            </ImageView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/statusValueTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sogeoui"
+                android:textColor="@color/colorEditTextColor"
+                android:textSize="12sp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="@+id/controlTitle"
+                app:layout_constraintTop_toBottomOf="@+id/controlStatus"
+                tools:text="Yerlş: 0 / 7" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/controlTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sogeoui"
+                android:textColor="@color/white"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/statusValueTxt"
+                tools:text="EKSIK" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

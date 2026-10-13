@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_recording_barcode"
+    app:startDestination="@id/barcodeRecordingFragment">
+
+    <fragment
+        android:id="@+id/barcodeRecordingFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.recordBarcode.BarcodeRecordingFragment"
+        android:label="BarcodeRecordingFragment"
+        tools:layout="@layout/fragment_recording_barcode">
+        <action
+            android:id="@+id/action_barcodeRecordingFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+</navigation>

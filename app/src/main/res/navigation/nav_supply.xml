@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_supply"
+    app:startDestination="@id/supplyListFragment">
+
+    <fragment
+        android:id="@+id/supplyListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.supply.supplyList.SupplyListFragment"
+        android:label="SupplyListFragment" >
+        <action
+            android:id="@+id/action_supplyListFragment_to_supplyShelfFragment"
+            app:destination="@id/supplyShelfFragment" />
+        <action
+            android:id="@+id/action_supplyListFragment_to_createSupplyWorkActivityFragment"
+            app:destination="@id/createSupplyWorkActivityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/supplyShelfFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.supply.supplyShelf.SupplyShelfFragment"
+        android:label="fragment_supply_shelf"
+        tools:layout="@layout/fragment_supply_shelf" >
+        <action
+            android:id="@+id/action_supplyShelfFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragmentForSupply" />
+        <action
+            android:id="@+id/action_supplyShelfFragment_to_supplyShelfListDialog"
+            app:destination="@id/supplyShelfListDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/productListDialogFragmentForSupply"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment" />
+    <fragment
+        android:id="@+id/createSupplyWorkActivityFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.supply.createSupplyWorkActivity.SelectingWorkActivityStatusListFragment"
+        android:label="fragment_create_supply_work_activity"
+        tools:layout="@layout/fragment_selecting_work_activity_status_list" >
+        <action
+            android:id="@+id/action_createSupplyWorkActivityFragment_to_createSupplyWorkActivityAndShelfListInformation"
+            app:destination="@id/createSupplyWorkActivityAndShelfListInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/createSupplyWorkActivityAndShelfListInformation"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.supply.createSupplyWorkActivity.CreateSupplyWorkActivityAndShelfListInformation"
+        android:label="CreateSupplyWorkActivityAndShelfListInformation" >
+        <argument
+            android:name="supplyStatus"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <dialog
+        android:id="@+id/supplyShelfListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.supply.dialog.SupplyShelfListDialog"
+        android:label="SupplyShelfListDialog" >
+        <argument
+            android:name="productShelfSupplyDto"
+            app:argType="eryaz.software.basewms.data.models.dto.ProductShelfSupplyDto[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
+</navigation>

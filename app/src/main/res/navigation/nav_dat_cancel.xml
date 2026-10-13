@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_dat_cancel"
+    app:startDestination="@id/transferPlacementListFragment">
+
+    <fragment
+        android:id="@+id/transferPlacementListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datCancel.transferPlacementList.TransferPlacementListFragment"
+        android:label="TransferPlacementListFragment" >
+        <action
+            android:id="@+id/action_transferPlacementListFragment_to_transferPlacementDetail"
+            app:destination="@id/transferPlacementDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/transferPlacementDetail"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datCancel.transferPlacementProcess.TransferPlacementDetail"
+        android:label="TransferPlacementDetail" >
+        <action
+            android:id="@+id/action_transferPlacementDetail_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment" />
+</navigation>

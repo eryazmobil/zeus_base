@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:title="@string/crossdock_request" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/bgColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TableLayout
+            android:id="@+id/tableRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:stretchColumns="3">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="18sp"
+                    tools:text="@string/product_code" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_productcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginVertical="8dp"
+                    android:layout_span="2"
+                    android:fontFamily="@font/sogeoui"
+                    android:textSize="18sp"
+                    tools:text="GDB-400" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/product_name"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_productname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginVertical="8dp"
+                    android:layout_span="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="15sp"
+                    tools:text="FREN BALATA " />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/control_point"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_controlpoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginVertical="8dp"
+                    android:layout_span="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/colorDangerRed"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="12" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/need_qty"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginVertical="8dp"
+                    android:layout_span="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="18sp"
+                    tools:text="5 " />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/transferable_qty"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_qty_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginVertical="8dp"
+                    android:layout_span="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="18sp"
+                    tools:text="20" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_row_bottomline">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/transfer_qty"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edt_qty"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold"
+                    android:hint="@string/qty" />
+
+                <View
+                    android:layout_height="20dp"
+                    android:layout_column="3"
+                    android:layout_gravity="center" />
+            </TableRow>
+        </TableLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shelfPlacement"
+            style="@style/Widget.NewZeusDemo.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="24dp"
+            android:text="@string/shelf_placement"
+            app:fontFamily="@font/sogeoui"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/placementToControlPoint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableRoot" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/placementToControlPoint"
+            style="@style/Widget.NewZeusDemo.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="24dp"
+            android:text="@string/control_point_placement"
+            app:fontFamily="@font/sogeoui"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shelfPlacement"
+            app:layout_constraintTop_toBottomOf="@+id/tableRoot" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

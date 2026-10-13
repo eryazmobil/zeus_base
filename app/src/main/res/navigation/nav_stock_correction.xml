@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_stock_correction"
+    app:startDestination="@id/transferStockCorrectionFragment">
+
+    <fragment
+        android:id="@+id/transferStockCorrectionFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferStockCorrection.TransferStockCorrectionFragment"
+        android:label="TransferStockCorrectionFragment"
+        tools:layout="@layout/fragment_transfer_stock_correction">
+        <action
+            android:id="@+id/action_transferStockCorrectionFragment_to_stockTypeFragment"
+            app:destination="@id/stockTypeFragment" />
+        <action
+            android:id="@+id/action_transferStockCorrectionFragment_to_storageListDialogFragment"
+            app:destination="@id/storageListDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/stockTypeFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferStockCorrection.stockType.StockTypeFragment"
+        android:label="StockTypeFragment"
+        tools:layout="@layout/dialog_stock_type_list" />
+    <dialog
+        android:id="@+id/storageListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.movement.transferStockCorrection.storageList.StorageListDialogFragment"
+        android:label="StorageListDialogFragment"
+        tools:layout="@layout/dialog_storage_list" >
+
+        <argument
+            android:name="enterStorage"
+            app:argType="boolean"/>
+    </dialog>
+
+</navigation>

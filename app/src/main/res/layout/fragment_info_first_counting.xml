@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.counting.firstCounting.firstCountingDetail.countingInfo.InfoFirstCountingVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/info"
+            app:title="@string/counting" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/productDetailFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:layout_marginBottom="16dp"
+                        app:cardBackgroundColor="?colorSurface"
+                        app:cardCornerRadius="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/shelfAddressTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/primaryDarkColor"
+                                android:fontFamily="@font/sogeoui"
+                                android:gravity="center"
+                                android:minHeight="32dp"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/white"
+                                android:textSize="24sp"
+                                android:text="@{viewModel.shelfAddress}"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="A1-K1-S1" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/section1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_13sdp"
+                                android:paddingEnd="@dimen/_6sdp"
+                                android:text="@string/product_code_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toStartOf="@id/section2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/shelfAddressTxt" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="0dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintBottom_toBottomOf="@id/section1"
+                                app:layout_constraintStart_toEndOf="@id/section1"
+                                app:layout_constraintTop_toTopOf="@id/section1" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/section2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:gravity="end"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:paddingEnd="@dimen/_13sdp"
+                                android:text="@string/qty_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/section1"
+                                app:layout_constraintTop_toBottomOf="@id/shelfAddressTxt" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintTop_toBottomOf="@id/section1" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constrainedHeight="true"
+                                app:layout_constraintTop_toBottomOf="@+id/section1"
+                                app:layout_constraintVertical_bias="0"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/item_counting_info" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

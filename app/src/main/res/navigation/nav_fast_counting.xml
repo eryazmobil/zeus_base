@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_fast_counting"
+    app:startDestination="@id/fastCountingListFragment">
+
+    <fragment
+        android:id="@+id/fastCountingListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.fastCounting.FastCountingListFragment"
+        android:label="FastCountingListFragment"
+        tools:layout="@layout/fragment_fast_counting_list">
+        <action
+            android:id="@+id/action_fastCountingListFragment_to_fastCountingDetailFragment"
+            app:destination="@id/fastCountingDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fastCountingDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.fastCounting.fastCountingDetail.FastCountingDetailFragment"
+        android:label="FastCountingDetailFragment"
+        tools:layout="@layout/fragment_fast_counting_detail">
+
+        <argument
+            android:name="headerId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fastCountingDetailFragment_to_fastWillCountedListFragment"
+            app:destination="@id/fastWillCountedListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fastWillCountedListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.fastCounting.fastCountingDetail.willCounted.FastWillCountedListFragment"
+        android:label="FastWillCountedListFragment"
+        tools:layout="@layout/fragment_fast_will_counted_list">
+        <argument
+            android:name="productList"
+            app:argType="eryaz.software.basewms.data.models.dto.CountingComparisonDto[]" />
+        <action
+            android:id="@+id/action_fastWillCountedListFragment_to_editedQuantityDialog"
+            app:destination="@id/editedQuantityDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/editedQuantityDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.counting.fastCounting.dialog.EditedQuantityDialog"
+        android:label="EditedQuantityDialog"
+        tools:layout="@layout/dialog_edit_product_quantity">
+        <argument android:name="productCode" />
+        <argument
+            android:name="productQuantity"
+            app:argType="integer" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </dialog>
+
+</navigation>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.outbound.datControl.datControlDetail.TransferControlPointDetailVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:id="@+id/stateView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconDrawable="@drawable/menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle='@{@string/control + " / " + viewModel.workActivityCode}'
+            app:title="@string/control_point_content" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bgColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <eryaz.software.basewms.util.widgets.TextInputLayout
+                    android:id="@+id/searchProductTill"
+                    style="@style/Widget.Zeus.SearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:elevation="10dp"
+                    android:hint="@string/product_barcode"
+                    app:endIconDrawable="@drawable/ic_blue_search"
+                    app:endIconTint="@null"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchEdt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={viewModel.searchProduct}"
+                        android:textColorHint="@color/logoGray"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/sogeoui" />
+                </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/packageSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    app:isVisibleElseGone="@{viewModel.showSpinnerList}"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="12dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/searchProductTill" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/packageTill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@id/packageSpinner">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/detailPackage"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_search"
+                        app:layout_constraintEnd_toStartOf="@id/addPackage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/packageTill" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/addPackage"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/plus_icon"
+                        app:layout_constraintEnd_toStartOf="@id/updatePackage"
+                        app:layout_constraintStart_toEndOf="@id/detailPackage"
+                        app:layout_constraintTop_toTopOf="@id/packageTill" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/updatePackage"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/update"
+                        app:layout_constraintEnd_toEndOf="@id/packageTill"
+                        app:layout_constraintStart_toEndOf="@id/addPackage"
+                        app:layout_constraintTop_toTopOf="@id/packageTill" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <eryaz.software.basewms.util.widgets.DetailRowTextView
+                    android:id="@+id/productDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="8dp"
+                    app:changeColor="@color/textColor"
+                    app:clientName="@{viewModel.productDetail.product.manufacturerCode}"
+                    app:creationTime="@{viewModel.productDetail.product.code}"
+                    app:detailTitle="@string/product_details"
+                    app:documentNo="@{viewModel.productDetail.product.definition}"
+                    app:isVisibleElseGone="@{!viewModel.serialCheckBox &amp;&amp; viewModel.showProductDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packageTill" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/itemGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:animateLayoutChanges="@{true}"
+                    android:paddingTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/productDescription">
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/quantityTill"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:elevation="10dp"
+                        android:hint="@string/qty"
+                        app:isVisibleElseGone="@{!viewModel.serialCheckBox}"
+                        app:layout_constraintEnd_toStartOf="@id/checkBox"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/quantityEdt"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:text="@={viewModel.enterQuantity}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:minHeight="0dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/quick_control"
+                        android:checked="@={viewModel.serialCheckBox}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/quantityTill"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/controlBtn"
+                        style="@style/Widget.NewZeusDemo.Button_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="@string/control"
+                        android:textSize="20sp"
+                        android:clickable="@{viewModel.controlEnable}"
+                        app:fontFamily="@font/sogeoui"
+                        app:isVisibleElseGone="@{!viewModel.serialCheckBox}"
+                        app:layout_constraintTop_toBottomOf="@id/quantityTill" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/itemHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@id/itemGroup">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/productName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/orange_a1"
+                        android:fontFamily="@font/sogeoui"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:scrollHorizontally="true"
+                        android:text="@string/product_2"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/orderQuantityTxt"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/orderQuantityTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/orange_a1"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="@string/order"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/collectedQuantityTxt"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/productName"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/collectedQuantityTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/orange_a1"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="end"
+                        android:padding="5dp"
+                        android:text="@string/picked"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/controlledTxt"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/orderQuantityTxt"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/controlledTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/orange_a1"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/control"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/collectedQuantityTxt"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="12dp"
+                    android:layout_weight="2"
+                    app:itemDecoration="@{12}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/itemHeader"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_control_point_detail" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/itemFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/productNameFooter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryDarkColor"
+                        android:fontFamily="@font/sogeoui"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@string/grand_total_dat"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toStartOf="@id/orderQuantityTxtFooter"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/orderQuantityTxtFooter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/primaryDarkColor"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@{viewModel.quantityOrder}"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toStartOf="@id/collectedQuantityTxtFooter"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/productNameFooter"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="23" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/collectedQuantityTxtFooter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/primaryDarkColor"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@{viewModel.quantityCollected}"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toStartOf="@id/controlledTxtFooter"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/orderQuantityTxtFooter"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="23" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/controlledTxtFooter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:background="@color/primaryDarkColor"
+                        android:fontFamily="@font/sogeoui"
+                        android:gravity="center"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@{viewModel.quantityShipped}"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/collectedQuantityTxtFooter"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="23" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+</layout>

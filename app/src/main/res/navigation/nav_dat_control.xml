@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_dat_control"
+    app:startDestination="@id/controlPointTransferListFragment">
+
+    <dialog
+        android:id="@+id/packageListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.controlPoint.orderHeaderDialog.controlPointDetail.addPackage.AddPackageControlDialog"
+        android:label="PackageListDialog"
+        tools:layout="@layout/dialog_add_package_control">
+
+        <argument
+            android:name="packgeList"
+            app:argType="eryaz.software.basewms.data.models.dto.PackageDto[]" />
+        <argument
+            android:name="orderHeaderId"
+            app:argType="integer" />
+
+    </dialog>
+    <fragment
+        android:id="@+id/controlPointTransferListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datControl.ControlPointTransferListFragment"
+        android:label="ControlPointTransferListFragment"
+        tools:layout="@layout/fragment_control_point_transfer_list">
+        <action
+            android:id="@+id/action_controlPointTransferListFragment_to_transferControlPointDetailFragment"
+            app:destination="@id/transferControlPointDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/transferControlPointDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datControl.datControlDetail.TransferControlPointDetailFragment"
+        android:label="TransferControlPointDetailFragment"
+        tools:layout="@layout/fragment_transfer_control_point_detail">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <argument android:name="workActivityCode" />
+        <action
+            android:id="@+id/action_transferControlPointDetailFragment_to_packageListDialog"
+            app:destination="@id/packageListDialog" />
+        <action
+            android:id="@+id/action_transferControlPointDetailFragment_to_transferDetailListDialog"
+            app:destination="@id/transferDetailListDialog" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/transferDetailListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.datPicking.datPickingDetail.dialog.TransferDetailListDialog"
+        android:label="TransferDetailListDialog" >
+        <argument
+            android:name="datType"
+            app:argType="eryaz.software.basewms.util.enums.DatType" />
+    </dialog>
+</navigation>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.inbound.acceptance.acceptanceProcess.createBarcode.CreateBarcodeDialogVM" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rowTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryBoldBlue"
+                android:fontFamily="@font/sogeoui"
+                android:gravity="center"
+                android:minHeight="32dp"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/menu_sub_recording_barcode"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/rowTitleTxt">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <eryaz.software.basewms.util.widgets.TextInputLayout
+                        android:id="@+id/search_product_barcode"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:elevation="10dp"
+                        app:endIconDrawable="@drawable/ic_blue_search"
+                        app:endIconTint="@null"
+                        android:hint="@string/product_code"
+                        app:layout_constraintBottom_toTopOf="@+id/rootViewDetail"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputProductCode"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text="@={viewModel.productCode}"
+                            android:textColorHint="@color/logoGray"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/sogeoui" />
+                    </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/rootViewDetail"
+                        isVisibleElseGone="@{viewModel.showProductViewDetail}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/search_product_barcode">
+
+                        <eryaz.software.basewms.util.widgets.DetailRowTextView
+                            android:id="@+id/detailRowTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:backgroundTint="@color/logoLightGray"
+                            app:cardCornerRadius="@dimen/_8sdp"
+                            app:cardElevation="8dp"
+                            app:changeColor="@color/white"
+                            app:clientName="@{viewModel.productDetail.manufacturer}"
+                            app:creationTime="@{viewModel.productDetail.code}"
+                            app:detailTitle="@string/waybill_detail"
+                            app:documentNo="@{viewModel.productDetail.definition}"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <eryaz.software.basewms.util.widgets.TextInputLayout
+                            android:id="@+id/inputProductBarcode"
+                            style="@style/Widget.Zeus.SearchInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:elevation="10dp"
+                            android:hint="@string/product_barcode"
+                            app:layout_constraintTop_toBottomOf="@id/detailRowTextView">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/search_txt"
+                                style="@style/Widget.Zeus.SearchInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textEmailAddress"
+                                android:text="@={viewModel.productBarcode}"
+                                android:textColorHint="@color/logoGray"
+                                android:textSize="18sp"
+                                app:fontFamily="@font/sogeoui" />
+                        </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/editQuantityView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="16dp"
+                            app:cardCornerRadius="@dimen/_13sdp"
+                            app:cardElevation="8dp"
+                            app:layout_constraintTop_toBottomOf="@id/inputProductBarcode">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/titleTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="14dp"
+                                    android:gravity="center"
+                                    android:minHeight="32dp"
+                                    android:text="@string/qty"
+                                    android:textColor="@color/textColor"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <EditText
+                                    android:id="@+id/quantityEdt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:background="@null"
+                                    android:fontFamily="@font/sogeoui"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:text="@={viewModel.productQuantity}"
+                                    android:textSize="40sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/multiplierTxt"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/multiplierTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="17dp"
+                                    android:layout_marginStart="14dp"
+                                    android:fontFamily="@font/sogeoui"
+                                    android:gravity="center"
+                                    android:minHeight="32dp"
+                                    android:text=""
+                                    android:textColor="@color/textColor"
+                                    android:textSize="40sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/quantityEdt"
+                                    app:layout_constraintTop_toTopOf="@+id/quantityEdt" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/saveBtn"
+                            style="@style/Widget.NewZeusDemo.Button_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:enabled="@{viewModel.saveEnabled}"
+                            android:text="@string/save"
+                            android:textSize="20sp"
+                            app:fontFamily="@font/sogeoui"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editQuantityView"
+                            app:layout_goneMarginBottom="@dimen/_10sdp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

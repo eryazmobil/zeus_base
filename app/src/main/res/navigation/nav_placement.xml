@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_placement"
+    app:startDestination="@id/placementListFragment">
+
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+    <fragment
+        android:id="@+id/placementListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.placement.PlacementListFragment"
+        android:label="PlacementListFragment"
+        tools:layout="@layout/fragment_placement_list">
+
+        <action
+            android:id="@+id/action_placementListFragment_to_placementDetailFragment"
+            app:destination="@id/placementDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/placementDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.placement.placementDetail.PlacementDetailFragment"
+        android:label="PlacementDetailFragment"
+        tools:layout="@layout/fragment_placement_detail">
+        <action
+            android:id="@+id/action_placementDetailFragment_to_menuDialogFragment"
+            app:destination="@id/menuDialogFragment" />
+        <action
+            android:id="@+id/action_placementDetailFragment_to_waybillDetailListDialog"
+            app:destination="@id/waybillDetailListDialog" />
+        <action
+            android:id="@+id/action_placementDetailFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/menuDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.acceptance.acceptanceProcess.MenuDialogFragment"
+        android:label="MenuDialogFragment"
+        tools:layout="@layout/dialog_menu_layout" />
+
+    <dialog
+        android:id="@+id/waybillDetailListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.inbound.acceptance.acceptanceProcess.waybillDetail.WaybillDetailListDialog"
+        android:label="WaybillDetailListDialog"
+        tools:layout="@layout/waybill_detail_dialog_list" />
+</navigation>

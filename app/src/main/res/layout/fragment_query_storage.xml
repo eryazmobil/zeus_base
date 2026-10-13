@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.query.queryStorage.QueryStorageFragmentVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/menu_sub_query_product"
+            app:title="@string/menu_query" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <eryaz.software.basewms.util.widgets.TextInputLayout
+                    android:id="@+id/searchTil"
+                    style="@style/Widget.Zeus.SearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:clickable="true"
+                    android:elevation="10dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/product_barcode"
+                    app:endIconDrawable="@drawable/ic_blue_search"
+                    app:endIconTint="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchEdt"
+                        style="@style/Widget.Zeus.SearchInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={viewModel.searchProduct}"
+                        android:textColorHint="@color/logoGray"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/sogeoui" />
+                </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/productDetailFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    app:isVisibleElseGone="@{viewModel.showProductDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchTil">
+
+                    <eryaz.software.basewms.util.widgets.DetailRowTextView
+                        android:id="@+id/productDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="8dp"
+                        app:changeColor="@color/textColor"
+                        app:clientName="@{viewModel.productDetail.manufacturerCode}"
+                        app:creationTime="@{viewModel.productDetail.code}"
+                        app:detailTitle="@string/product_details"
+                        app:documentNo="@{viewModel.productDetail.definition}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:layout_marginBottom="16dp"
+                        app:cardBackgroundColor="?colorSurface"
+                        app:cardCornerRadius="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/productDescription"
+                        app:layout_constraintVertical_bias="0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/section1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_13sdp"
+                                android:paddingEnd="@dimen/_6sdp"
+                                android:text="@string/warehouse_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toStartOf="@id/section2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="0dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintBottom_toBottomOf="@id/section1"
+                                app:layout_constraintStart_toEndOf="@id/section1"
+                                app:layout_constraintTop_toTopOf="@id/section1" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/section2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:gravity="end"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:paddingEnd="@dimen/_13sdp"
+                                android:text="@string/qty_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/section1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintTop_toBottomOf="@id/section1" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerViewForStorage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constrainedHeight="true"
+                                app:layout_constraintTop_toBottomOf="@+id/section1"
+                                app:layout_constraintVertical_bias="0"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/item_storage_quantity_text" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardShelf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:layout_marginBottom="16dp"
+                        app:cardBackgroundColor="?colorSurface"
+                        app:cardCornerRadius="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cardStorage"
+                        app:layout_constraintVertical_bias="0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/sectionShelf1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_13sdp"
+                                android:paddingEnd="@dimen/_6sdp"
+                                android:text="@string/shelf_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toStartOf="@id/sectionShelf2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="0dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintBottom_toBottomOf="@id/sectionShelf1"
+                                app:layout_constraintStart_toEndOf="@id/sectionShelf1"
+                                app:layout_constraintTop_toTopOf="@id/sectionShelf1" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/sectionShelf2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sogeoui"
+                                android:gravity="end"
+                                android:paddingVertical="@dimen/_13sdp"
+                                android:paddingStart="@dimen/_6sdp"
+                                android:paddingEnd="@dimen/_13sdp"
+                                android:text="@string/qty_big"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/sectionShelf1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_f6"
+                                app:layout_constraintTop_toBottomOf="@id/sectionShelf1" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerViewForShelf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constrainedHeight="true"
+                                app:layout_constraintTop_toBottomOf="@+id/sectionShelf1"
+                                app:layout_constraintVertical_bias="0"
+                                tools:itemCount="2"
+                                tools:listitem="@layout/item_storage_quantity_text" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+
+    </eryaz.software.basewms.util.widgets.StateView>
+
+</layout>

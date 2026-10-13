@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.dashboard.movement.supply.createSupplyWorkActivity.CreateSupplyWorkActivityVM" />
+    </data>
+
+    <eryaz.software.basewms.util.widgets.StateView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:sv_ignore_referenced_ids="toolbar"
+        app:sv_viewState="@{viewModel.uiState}">
+
+        <eryaz.software.basewms.util.widgets.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back_icon"
+            app:subTitle="@string/create_work_activity"
+            app:title="@string/replenishment" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/supplyShelfDapperRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/create_work_activity_for_supply"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:itemCount="10"
+            android:layout_marginBottom="@dimen/_20sdp"
+            tools:listitem="@layout/supply_shelf_dapper_item" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_work_activity_for_supply"
+            style="@style/Widget.NewZeusDemo.Button_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="@string/create_work_activity"
+            android:textSize="20sp"
+            app:fontFamily="@font/sogeoui"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginTop="@dimen/_10sdp" />
+
+
+        <include layout="@layout/layout_loading" />
+
+        <include layout="@layout/layout_error" />
+    </eryaz.software.basewms.util.widgets.StateView>
+</layout>

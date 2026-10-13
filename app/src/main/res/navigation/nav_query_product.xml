@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_query_product"
+    app:startDestination="@id/queryProductFragment">
+
+    <fragment
+        android:id="@+id/queryProductFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.query.queryStorage.QueryStorageFragment"
+        android:label="QueryProductFragment"
+        tools:layout="@layout/fragment_query_storage">
+        <action
+            android:id="@+id/action_queryProductFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+</navigation>

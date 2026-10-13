@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="eryaz.software.basewms.data.enums.UiState" />
+
+        <variable
+            name="viewModel"
+            type="eryaz.software.basewms.ui.auth.LoginViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00243A"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:fitsSystemWindows="@{true}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:paddingBottom="24dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/decorImg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_login_decoration"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:adjustViewBounds="true"
+                android:scaleType="center"
+                android:src="@drawable/zeus_logo"
+                app:layout_constraintBottom_toBottomOf="@id/decorImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/decorImg"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintWidth_max="200dp"
+                app:tint="@null" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="GİRİŞ YAP"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@id/decorImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/urlBtn"
+                style="@style/Widget.NewZeusDemo.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:minWidth="0dp"
+                android:minHeight="40dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="4dp"
+                android:text="/URL"
+                android:visibility="gone"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                app:backgroundTint="#0083C4"
+                app:cornerRadius="6dp"
+                app:fontFamily="@font/sogeoui"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/decorImg" />
+
+            <eryaz.software.basewms.util.widgets.TextInputLayout
+                android:id="@+id/usernameTil"
+                style="@style/Widget.Zeus.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/username"
+                app:boxBackgroundColor="#003B4D"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="#0083C4"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/urlBtn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.email}"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    app:enabled="@{viewModel.uiState != UiState.LOADING}"
+                    app:fontFamily="@font/roboto_medium" />
+            </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+            <eryaz.software.basewms.util.widgets.TextInputLayout
+                android:id="@+id/passwordTil"
+                style="@style/Widget.Zeus.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/password"
+                app:boxBackgroundColor="#003B4D"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/usernameTil">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:text="@={viewModel.password}"
+                    android:textSize="16sp"
+                    app:enabled="@{viewModel.uiState != UiState.LOADING}"
+                    app:fontFamily="@font/roboto_medium" />
+            </eryaz.software.basewms.util.widgets.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginBtn"
+                style="@style/Widget.NewZeusDemo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:enabled="@{viewModel.loginEnable}"
+                android:text="@string/enter"
+                app:backgroundTint="#0083C4"
+                app:cornerRadius="6dp"
+                app:fontFamily="@font/sogeoui"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTil"
+                app:onSingleClick="@{()-> viewModel.login()}"
+                app:textAllCaps="true" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

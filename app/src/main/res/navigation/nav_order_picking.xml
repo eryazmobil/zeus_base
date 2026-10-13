@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_order_picking_graph"
+    app:startDestination="@id/orderPickingListFragment">
+
+    <dialog
+        android:id="@+id/productListDialogFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.recording.dialog.ProductListDialogFragment"
+        android:label="ProductListDialogFragment"
+        tools:layout="@layout/dialog_product_list" />
+    <fragment
+        android:id="@+id/orderPickingListFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.orderPicking.OrderPickingListFragment"
+        android:label="OrderPickingListFragment"
+        tools:layout="@layout/fragment_order_picking_list">
+        <action
+            android:id="@+id/action_orderPickingListFragment_to_orderPickingDetailFragment"
+            app:destination="@id/orderPickingDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderPickingDetailFragment"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.orderPicking.orderPickingDetail.OrderPickingDetailFragment"
+        android:label="OrderPickingDetailFragment"
+        tools:layout="@layout/fragment_order_picking_detail">
+        <action
+            android:id="@+id/action_orderPickingDetailFragment_to_orderDetailListDialog"
+            app:destination="@id/orderDetailListDialog" />
+        <action
+            android:id="@+id/action_orderPickingDetailFragment_to_shelfListDialog"
+            app:destination="@id/shelfListDialog" />
+        <action
+            android:id="@+id/action_orderPickingDetailFragment_to_productListDialogFragment"
+            app:destination="@id/productListDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/orderDetailListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.orderPicking.orderPickingDetail.dialog.OrderDetailListDialog"
+        android:label="OrderDetailListDialog"
+        tools:layout="@layout/order_detail_dialog_list" >
+        <argument
+            android:name="orderDetailList"
+            app:argType="eryaz.software.basewms.data.models.dto.OrderDetailDto[]" />
+    </dialog>
+    <dialog
+        android:id="@+id/shelfListDialog"
+        android:name="eryaz.software.basewms.ui.dashboard.outbound.orderPicking.orderPickingDetail.dialog.ShelfListDialog"
+        android:label="ShelfListDialog"
+        tools:layout="@layout/order_shelf_list_dialog">
+
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+
+    </dialog>
+
+</navigation>
