@@ -78,7 +78,11 @@ def zeusGuardTask = tasks.register("zeusGuard") {
                 if (f.isFile() && (f.name.endsWith(".kt") || f.name.endsWith(".java"))) scan(f, codeRules)
             }
         }
-        zeusBuildFiles.each { scan(it, buildRules) }
+        // "...URL = " kuralı sadece gradle.properties içindir (settings.gradle'daki maven { url = ... } satırı serbest)
+        def propertiesOnlyRule = buildRules.last()
+        zeusBuildFiles.each { File f ->
+            scan(f, f.name == "gradle.properties" ? buildRules : buildRules - [propertiesOnlyRule])
+        }
 
         if (!violations.isEmpty()) {
             throw new GradleException(
