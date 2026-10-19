@@ -33,7 +33,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            // Release APK R8 ile küçültülür ve karartılır (debug etkilenmez)
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
