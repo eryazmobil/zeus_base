@@ -25,7 +25,8 @@ def zeusBuildFiles = [project.file("build.gradle"), project.file("build.gradle.k
 if (!zeusIsLibraryRoot) {
     zeusBuildFiles += [project.rootProject.file("build.gradle"), project.rootProject.file("build.gradle.kts"),
                        project.rootProject.file("gradle.properties"),
-                       project.rootProject.file("gradle/libs.versions.toml")]
+                       project.rootProject.file("gradle/libs.versions.toml"),
+                       project.rootProject.file("settings.gradle"), project.rootProject.file("settings.gradle.kts")]
 }
 zeusBuildFiles = zeusBuildFiles.findAll { it.exists() }
 
