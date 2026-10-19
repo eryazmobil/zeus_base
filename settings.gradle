@@ -16,10 +16,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
-        // ZeusBaseData kütüphanesi projenin içindeki zeus-repo/ klasöründen gelir.
-        // Sadece derlenmiş paket (.aar) vardır, kaynak kod yoktur; token gerekmez.
-        // Yeni sürüm ZeusBaseData tarafında ./publish-to-app.sh ile buraya yazılır.
         maven {
             url = uri(new File(settingsDir, "zeus-repo"))
             content { includeGroup("eryaz.software.zeus") }
