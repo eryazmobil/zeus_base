@@ -17,16 +17,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
 
-        // ZeusBaseData kütüphanesi (API, repo, Koin, base sınıflar) GitHub Packages'tan gelir.
-        // Erişim için ~/.gradle/gradle.properties dosyasına (proje içine DEĞİL):
-        //   gpr.user=GITHUB_KULLANICI_ADI
-        //   gpr.key=ghp_...   (read:packages yetkili token)
+        // ZeusBaseData kütüphanesi projenin içindeki zeus-repo/ klasöründen gelir.
+        // Sadece derlenmiş paket (.aar) vardır, kaynak kod yoktur; token gerekmez.
+        // Yeni sürüm ZeusBaseData tarafında ./publish-to-app.sh ile buraya yazılır.
         maven {
-            url = uri("https://maven.pkg.github.com/eryazzmobil/zeusdatabase")
-            credentials {
-                username = providers.gradleProperty("gpr.user").getOrElse(System.getenv("GITHUB_ACTOR") ?: "")
-                password = providers.gradleProperty("gpr.key").getOrElse(System.getenv("GITHUB_TOKEN") ?: "")
-            }
+            url = uri(new File(settingsDir, "zeus-repo"))
             content { includeGroup("eryaz.software.zeus") }
         }
     }
